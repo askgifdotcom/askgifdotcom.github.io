@@ -1,0 +1,170 @@
+﻿<link rel="stylesheet" href="/App/third-Party/tagify/tagify.css" type="text/css" media="screen">
+<div id="container" ng-controller="userAfterLoginAdminAddBlog">
+    <div class="content-wrapper" style="min-height: 1418.47px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profile</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">User Profile</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab">Settings</a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" id="settings">
+                                        <div class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="profilePic" class="col-sm-2 col-form-label">Add Blog Image</label>
+                                                <div class="col-sm-10">
+                                                    <div class="row">
+                                                        <img class="width50perc" src="{{GifData.gifUrl}}" />
+                                                    </div>
+                                                    <div>
+                                                        <label for="title" class="col-sm-2 col-form-label">Paste Image Url</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="title" placeholder="Please Enter Title" ng-model="GifData.gifUrl">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="myFileField">Select a file: </label>
+                                                            <input type="file" demo-file-model="myFile" class="form-control" id="myFileField" />
+                                                        </div>
+                                                        <img src="/App/img/loading/loading123.gif" ng-show="imageUploading" />
+                                                        <div class="alert alert-danger alert-dismissible" ng-hide="imageUploaded">
+                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                            You must upload a image to submit this.
+                                                        </div>
+                                                        <button ng-click="uploadGifFile()" class="btn btn-primary">Upload File</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" ng-blur="translateToHindi()" id="title" placeholder="Please Enter Title" ng-model="GifData.title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="title_hindi" class="col-sm-2 col-form-label">Title Hindi <img ng-show="translatingTitle" style="height:20px" src="../../../../App/img/loading/loading123.gif"></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="title_hindi" placeholder="Please Enter Hindi Title" ng-model="GifData.titleHindi">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="tags" class="col-sm-2 col-form-label">Tags</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group mb-3">
+                                                        <!--<div class="input-group-prepend">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{searchOption}}
+                    </button>
+                    <div class="dropdown-menu" style="">
+                        <a class="dropdown-item" ng-click="updateSearchOption('contains')">Contains</a>
+                        <a class="dropdown-item" ng-click="updateSearchOption('starts_with')">Starts With</a>
+                    </div>
+                </div>-->
+                                                        <!-- /btn-group -->
+                                                        <input name='input'
+                                                               class=''
+                                                               placeholder='write some tags'
+                                                               value=''
+                                                               data-blacklist=''>
+                                                    </div>
+                                                    <button class="tags--removeAllBtn" type="button" style="display:none">Remove all these tags ⬆</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newTags" class="col-sm-2 col-form-label">Category:</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" name="cars" id="cars">
+                                                        <option value="coding">Coding</option>
+                                                        <option value="health-and-fitness">Health And Fitness</option>
+                                                        <option value="informatives">Informatives</option>
+                                                        <option value="life-hacks">Life Hacks</option>
+                                                        <option value="news">News</option>
+                                                        <option value="puzzles">Puzzles</option>
+                                                        <option value="recipe">Recipe</option>
+                                                        <option value="story">Story</option>
+                                                        <option value="travel">Travel</option>
+                                                        <option value="tutorials">Tutorials</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newTags" class="col-sm-1 col-form-label">English:</label>
+                                                <div class="col-sm-11">
+                                                    <!-- NOTE: TinyMCE textareas must have id's -->
+                                                    <textarea data-ui-tinymce id="full-featured-non-premium" data-ng-model="from_one.from_one"></textarea>
+                                                    <p>{{TinyMCE1}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="newTags" class="col-sm-1 col-form-label">Hindi:</label>
+                                                <div class="col-sm-11">
+                                                    <!-- NOTE: TinyMCE textareas must have id's -->
+                                                    <textarea data-ui-tinymce id="full-featured-non-premium-hi" data-ng-model="from_one.from_one_hi"></textarea>
+                                                    <p>{{TinyMCE1}}</p>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="color:red">
+                                                <ul>
+                                                    <li ng-hide="imageUploaded">Gif Must be Uploaded</li>
+                                                    <li ng-hide="GifData.title != ''">Title Can't be Empty</li>
+                                                    <li style="color:cornflowerblue" ng-hide="GifData.titleHindi != ''">Hindi Title is not compulsory but if you know better you fill it :)</li>
+                                                    <li style="color:cornflowerblue" ng-hide="GifData.tags.length != 0">At least one tag is mandatory</li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10">
+                                                    <button ng-click="submitGif();" class="btn btn-danger">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <div ng-init="FunCall()"></div>
+</div><!--/row-->

@@ -1,0 +1,111 @@
+﻿<link rel="stylesheet" href="/App/third-Party/tagify/tagify.css" type="text/css" media="screen">
+
+<div ng-controller="userAfterLoginAdminLearningMenuAssets">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profile</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Pending Gif</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">                                    
+                                    <button ng-repeat="item in allowedLearningMenuTypes" class="btn btn-primary" ng-click="updateMenuAsset(item);" style="margin-right: 5px">{{item}}</button>                                    
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="input-group input-group-sm" style="width: 70%;">
+                                                    <input ng-keypress="keyPressed($event)" type="text" name="table_search" class="form-control float-right" ng-model="SearchBoxText" placeholder="Search">
+                                                    <div class="input-group-append">
+                                                        <button ng-click="SearchImageAsset();" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.card-header -->
+
+                                            <table class="table table-striped table-hover table-bordered row-border hover">
+                                                <thead>
+                                                    <tr class="info">
+                                                        <th>S.N</th>
+                                                        <th>slug</th>
+                                                        <th>lable</th>
+                                                        <th>navIconFa</th>
+                                                        <th>href</th>
+                                                        <th>subMenu</th>
+                                                        <th>type</th>
+                                                        <th>Save</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="menu in learningMenus track by $index">
+
+                                                        <td>{{$index+1}}</td>
+                                                        <!--<td ng-show="menu.isNew"><a href="#" editable-text="menu.slug">{{ menu.slug }}</a></td>
+    <td ng-show="!menu.isNew"><p>{{ menu.slug }}</p></td>
+    <td><a href="#" editable-text="menu.lable">{{ menu.lable }}</a></td>
+    <td><i class="{{menu.navIconFa}}"></i> <a href="#" editable-text="menu.navIconFa">{{ menu.navIconFa }}</a></td>
+    <td><a href="#" editable-text="menu.href">{{ menu.href }}</a></td>
+    <td><a href="#" editable-text="menu.children">{{ menu.children || "empty" }}</a></td>
+    <td><a href="#" editable-text="menu.type">{{ menu.type || "empty" }}</a></td>-->
+
+                                                        <td><input ng-model="menu.slug"/></td>
+                                                        
+                                                        <td><input ng-model="menu.lable"/></td>
+                                                        <td><i class="{{menu.navIconFa}}"></i> <input ng-model="menu.navIconFa"/></td>
+                                                        <td><input ng-model="menu.href"/></td>
+                                                        <td><input ng-model="menu.children"/></td>
+                                                        <td><input ng-model="menu.type"/></td>
+
+                                                        <td><button ng-click="updateMenu(menu.slug);" class="btn btn-success">Save</button></td>
+                                                    </tr>                                                    
+                                                </tbody>
+                                            </table>
+
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10">
+                                                    <!--<button ng-click="updateGif();" class="btn btn-danger">Update</button>-->
+                                                  
+                                                    <button ng-click="addMenuLable();" class="btn btn-success">Add New Menu</button>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.card-body -->
+                                        </div>
+                                        <!-- /.card -->
+                                    </div>
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <div ng-init="FunCall()"></div>
+</div><!--/row-->

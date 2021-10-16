@@ -1,0 +1,101 @@
+﻿<link rel="stylesheet" href="/App/third-Party/tagify/tagify.css" type="text/css" media="screen">
+
+<div ng-controller="userAfterLoginPendingGif">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profile</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Pending Gif</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <button class="btn btn-primary" ng-click="getGifWithStatus('new');">New</button>
+                                        <button class="btn btn-primary" ng-click="getGifWithStatus('accepted');">accepted</button>
+                                        <button class="btn btn-primary" ng-click="getGifWithStatus('processed');">processed</button>
+                                        <button class="btn btn-info" ng-click="getGifWithStatus('addedtocatalog');">addedtocatalog</button>
+                                        <button class="btn btn-success" ng-click="getGifWithStatus('loyaltycredited');">loyaltycredited</button>
+                                        <button class="btn btn-danger" ng-click="getGifWithStatus('failed');">failed</button>
+                                    </li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" id="settings">
+                                        <div class="form-horizontal">                                            
+                                            <section class="content">
+                                                <div class="card card-solid">
+                                                    <div class="card-body pb-0">
+                                                        <div class="row d-flex align-items-stretch">
+                                                            
+                                                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch" ng-repeat="gif in pendingGifs">
+                                                                <div class="card bg-light">
+                                                                    <div class="card-header text-muted border-bottom-0">                                                                        
+                                                                        <span class="badge bg-info right-margin3" ng-bind="gif.state"></span>
+                                                                            <span style="float:right" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                                            </span>
+                                                                            <div class="dropdown-menu" style="">
+                                                                                <a class="dropdown-item" ng-click="EditGifOption(gif.id)">Edit</a>
+                                                                                <!--<a class="dropdown-item" ng-click="DeleteGifOption(gif.id)">Delete</a>-->
+                                                                            </div>                                                                        
+                                                                    </div>
+                                                                    <div class="card-body pt-0">
+                                                                        <a href="">
+                                                                            <img class="b-lazy full-height-width"
+                                                                                 src="{{gif.gifUrl}}" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <a href="" ng-repeat="tag in gif.tags"><span class="badge bg-primary right-margin3" ng-bind="tag"></span></a>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <a href=""><span ng-bind="gif.title"></span></a>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <a href=""><span ng-bind="gif.titleHindi"></span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- /.nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <div ng-init="FunCall()"></div>
+</div><!--/row-->
